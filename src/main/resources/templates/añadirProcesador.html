@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<head>
+	<title>SmartestPhone - Añadir nuevo procesador</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+	<style>
+		.unselectable {
+		    -webkit-touch-callout: none;
+		    -webkit-user-select: none;
+		    -khtml-user-select: none;
+		    -moz-user-select: none;
+		    -ms-user-select: none;
+		    user-select: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron">
+			<h1 class="display-2">
+				<b>SmartestPhone</b>
+			</h1>
+			<br />
+			<h3 class="display-4">
+				<b>Añadir un nuevo procesador</b>
+			</h3>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<ul class="nav nav-tabs nav-justified">
+					<li class="nav-item">
+						<a class="nav-link" href="/SmartestPhone">Inicio</a>
+					</li>
+					<li class="nav-item">
+						<div class="dropdown">
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Añadir</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="/SmartestPhone/añadir/smartphone">SmartPhone</a>
+								<a class="dropdown-item" href="/SmartestPhone/añadir/camara">Cámara</a>
+								<a class="dropdown-item active" href="/SmartestPhone/añadir/procesador">Procesador</a>
+								<a class="dropdown-item" href="/SmartestPhone/añadir/noticia">Noticia</a>
+							</div>
+						</div>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link disabled" data-toggle="tooltip" title="Accede buscandolo en inicio" disabled>Detalles</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/SmartestPhone/noticias">Noticias</a>
+					</li>
+					{{#admin}}
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/SmartestPhone/gestion">Gestión</a>
+					</li>
+					{{/admin}}
+					{{#user}}
+					<li class="nav-item">
+						<a class="nav-link" href="/SmartestPhone/salir">Cerrar sesión</a>
+					</li>
+					{{/user}}
+					{{^user}}
+					<li class="nav-item">
+						<a class="nav-link" href="/SmartestPhone/acceder">Iniciar sesión</a>
+					</li>
+					{{/user}}
+				</ul>
+				<br />
+			</div>
+		</div>
+		<h1 class="display-4">Añadir nuevo procesador</h1><br />
+		<form class="form-inline" method="post" action="/SmartestPhone/añadir/procesador/solicitud">
+			<div class="col">
+				Marca: 
+				<input type="text" name="marcap" class="form-control" maxlength="50" required /> 
+			</div>
+			<div class="col">
+				Modelo: 
+				<input type="text" name="modelop" class="form-control" maxlength="50" required /> 
+			</div>
+			<div class="col">
+				GHz: 
+				<input type="number" name="ghz" class="form-control" step=".1" maxlength="3" min="1" required /> 
+			</div>
+			<div class="col">
+				Nucleos:<br /> 
+				<input type="number" name="nucleos" class="form-control" maxlength="1" min="1" max="8" required />
+			</div>
+			<div class="col">
+				<input type="hidden" name="_csrf" value="{{token}}" />
+				<br /><input type="submit" value="Añadir" class="btn btn-success" />
+			</div>
+		</form>
+	</div>
+	<script>
+		$(document).ready(function(){
+    	$('[data-toggle="tooltip"]').tooltip();   
+		});
+	</script>
+	<br />
+</body>
+</html>

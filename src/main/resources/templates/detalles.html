@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<head>
+	<title>SmartestPhone - {{#smartphone}}{{marca}} {{modelo}}{{/smartphone}}</title>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+	<style>
+		.unselectable {
+		    -webkit-touch-callout: none;
+		    -webkit-user-select: none;
+		    -khtml-user-select: none;
+		    -moz-user-select: none;
+		    -ms-user-select: none;
+		    user-select: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron">
+			<h1 class="display-2"><b>SmartestPhone</b></h1>
+			<br/>
+			<h3 class="display-4"><b>{{#smartphone}}{{marca}} {{modelo}}{{/smartphone}}</b></h3>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<ul class="nav nav-tabs nav-justified">
+					<li class="nav-item">
+						<a class="nav-link" href="/SmartestPhone">Inicio</a>
+					</li>
+					<li class="nav-item">
+						<div class="dropdown">
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Añadir</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="/SmartestPhone/añadir/smartphone">SmartPhone</a>
+								<a class="dropdown-item" href="/SmartestPhone/añadir/camara">Cámara</a>
+								<a class="dropdown-item" href="/SmartestPhone/añadir/procesador">Procesador</a>
+								<a class="dropdown-item" href="/SmartestPhone/añadir/noticia">Noticia</a>
+							</div>
+						</div>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active unselectable" disabled>Detalles</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/SmartestPhone/noticias">Noticias</a>
+					</li>
+					{{#admin}}
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/SmartestPhone/gestion">Gestión</a>
+					</li>
+					{{/admin}}
+					{{#user}}
+					<li class="nav-item">
+						<a class="nav-link" href="/SmartestPhone/salir">Cerrar sesión</a>
+					</li>
+					{{/user}}
+					{{^user}}
+					<li class="nav-item">
+						<a class="nav-link" href="/SmartestPhone/acceder">Iniciar sesión</a>
+					</li>
+					{{/user}}
+				</ul>
+				<br />
+			</div>
+		</div>
+		<h1 class="display-4">Detalles</h1>
+		{{#smartphone}}
+			<div class="row">
+				<div class="col">
+						<p><b>Marca: </b>{{marca}}</p>
+						<p><b>Modelo: </b>{{modelo}}</p>
+						<p><b>Color: </b>{{color}}</p>
+						<p><b>Batería: </b>{{bateria}} mAh</p>
+						<p><b>Almacenamiento: </b>{{almacenamiento}} GB</p>
+						<p><b>Ram: </b>{{ram}} GB</p>
+						<p><b>Peso: </b>{{peso}} gr</p>
+				</div>
+				<div class="col">
+					<p>
+						<b>Sistema Operativo:</b><br />
+						Nombre: {{SO}}<br />
+						Versión: {{versionSO}}
+					</p>
+					<p>
+						<b>Procesador:</b><br />
+						Marca: {{procesador.marcap}}<br />
+						Modelo: {{procesador.modelop}}<br />
+						GHz: {{procesador.ghz}}<br />
+						Nucleos: {{procesador.nucleos}}<br />
+					</p>
+				</div>
+				<div class="col">
+					<p>
+						<b>Pantalla:</b><br />
+						Tipo: {{pantalla.tipo}}<br />
+						Resolución: {{pantalla.resolucion1}}x{{pantalla.resolucion2}} pixeles<br />
+						Pulgadas: {{pantalla.pulgadas}}"<br />
+					</p>
+					<p>
+						<b>Cámara:</b><br />
+						Marca: {{camara.marcac}}<br />
+						Modelo: {{camara.modeloc}}<br />
+						Megapixeles: {{camara.megapixeles}} Mpx<br />
+					</p>
+				</div>
+				<div class="col">
+					<p>
+						<b>Dimensiones:</b><br />
+						Ancho: {{dimensiones.ancho}} mm<br />
+						Alto: {{dimensiones.alto}} mm<br />
+						Largo: {{dimensiones.largo}} mm<br />
+					</p>
+					<p>
+						<a href="/SmartestPhone/modificar?id={{idSmartPhone}}" class="btn btn-warning" role="button">Modificar</a>
+					</p>
+				</div>
+			</div>
+			<h1 class="display-4">Noticias</h1>
+			<div class="row">
+				{{#noticias}}
+				<div class="col-sm-4">
+					<p>
+						<h3>{{titulo}}</h3>
+						<a target="_blank" href="//{{url}}">{{url}}</a>
+					</p>
+				</div>
+			{{/noticias}}
+			</div>
+		{{/smartphone}}
+		{{^smartphone}}
+			Algo ha ido mal, vuelve a inicio e intentalo de nuevo.
+		{{/smartphone}}
+	</div>
+	<script>
+		$(document).ready(function(){
+    	$('[data-toggle="tooltip"]').tooltip();   
+		});
+	</script>
+</body>
+</html>
